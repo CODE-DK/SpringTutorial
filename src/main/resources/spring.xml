@@ -25,4 +25,10 @@
 
     <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
 
+    <bean id="fileEventLogger" class="loggers.FileEventLogger" init-method="init"/>
+
+    <bean id="cacheFileEventLogger" class="loggers.CacheFileEventLogger" destroy-method="destroy">
+
+    </bean>
+
 </beans>

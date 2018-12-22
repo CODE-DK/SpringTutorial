@@ -1,6 +1,7 @@
 import beans.Client;
 import loggers.EventLogger;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
@@ -9,24 +10,23 @@ public class App {
     private EventLogger eventLogger;
 
     App(Client client, EventLogger eventLogger){
+        super();
         this.client = client;
         this.eventLogger = eventLogger;
     }
 
     public static void main(String[] args) {
 
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+
         App app = ctx.getBean("app", App.class);
 
-//        app.client = new beans.Client(1, "John Smith");
-//        app.eventLogger = new loggers.ConsoleEventLogger();
+        app.logEvent(ctx);
 
-        app.logEvent("first event");
-        app.logEvent("second event");
+        ctx.close();
     }
 
-    private void logEvent(String msg){
-//        String s = msg.replaceAll(String.valueOf(client.getId()), client.getFullName());
-//        eventLogger.logEvent();
+    private void logEvent(ApplicationContext ctx){
+
     }
 }
