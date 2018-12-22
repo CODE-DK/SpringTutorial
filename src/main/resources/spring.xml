@@ -9,18 +9,38 @@
     <import resource="others.xml"/>
 
     <bean id="client" class="beans.Client">
-        <constructor-arg value="1"/>
+        <constructor-arg value="1" type="java.lang.Integer"/>
         <constructor-arg value="John Smith"/>
+
+        <property name="id" value="2"/>
+        <property name="fullName" value="Any One"/>
+        
     </bean>
 
     <bean id="app" class="App">
         <constructor-arg ref="client"/>
         <constructor-arg ref="eventLogger"/>
+
+        <constructor-arg>
+            <map>
+                <entry key="INFO" value-ref="consoleEventLogger"/>
+                <entry key="ERROR" value-ref="combinedEventLogger"/>
+            </map>
+        </constructor-arg>
     </bean>
 
     <bean id="event" class="beans.Event" scope="prototype">
         <constructor-arg>
             <bean class="java.util.Date"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="combinedEventLogger" class="loggers.CombinedEventLogger">
+        <constructor-arg>
+            <list>
+                <ref bean="consoleEventLogger"/>
+                <ref bean="fileEventLogger"/>
+            </list>
         </constructor-arg>
     </bean>
 

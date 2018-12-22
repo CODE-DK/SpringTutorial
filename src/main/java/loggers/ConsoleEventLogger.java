@@ -2,7 +2,8 @@ package loggers;
 
 import beans.Event;
 
-public class ConsoleEventLogger implements EventLogger {
+public class ConsoleEventLogger extends AbstractLogger {
+
     public void logEvent (Event event){
         System.out.println(event);
     }

@@ -7,13 +7,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Event {
 
     private static final AtomicInteger ID = new AtomicInteger(0);
+
     private int id;
     private String msg;
     private Date date;
     private DateFormat df;
 
     public String toString(){
-        return id + " " + msg;
+        return id + " " + date + " " + msg;
     }
 
     public void setMsg(String msg) {
