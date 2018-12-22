@@ -1,5 +1,7 @@
 import beans.Client;
 import loggers.EventLogger;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
 
@@ -12,12 +14,15 @@ public class App {
     }
 
     public static void main(String[] args) {
-//        App app = new App();
+
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+        App app = (App) ctx.getBean("app");
 
 //        app.client = new beans.Client(1, "John Smith");
 //        app.eventLogger = new loggers.ConsoleEventLogger();
 
-//        app.logEvent("first event");
+        app.logEvent("first event");
+        app.logEvent("second event");
     }
 
     private void logEvent(String msg){
