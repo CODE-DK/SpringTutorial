@@ -16,7 +16,7 @@ public class App {
     public static void main(String[] args) {
 
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-        App app = (App) ctx.getBean("app");
+        App app = ctx.getBean("app", App.class);
 
 //        app.client = new beans.Client(1, "John Smith");
 //        app.eventLogger = new loggers.ConsoleEventLogger();
@@ -26,7 +26,7 @@ public class App {
     }
 
     private void logEvent(String msg){
-        String s = msg.replaceAll(String.valueOf(client.getId()), client.getFullName());
-        eventLogger.logEvent(s);
+//        String s = msg.replaceAll(String.valueOf(client.getId()), client.getFullName());
+//        eventLogger.logEvent();
     }
 }
